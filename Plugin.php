@@ -54,7 +54,7 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
             kaygb_copy();
 function kaygb_copy(){\$(document).ready(function(){\$(\"body\").bind('copy',function(e){hellolayer()})});var sitesurl=window.location.href;function hellolayer(){
     \$.message({
-        message: \"尊重原创，转载请注明出处！<br> 本文作者：Wibus<br>原文链接：<br>\"+sitesurl,
+        message: \"尊重原创，转载请注明出处！<br>原文链接：<br>\"+sitesurl,
         title: \"复制成功\",
         type: \"warning\",
         autoHide: !1,
@@ -69,34 +69,34 @@ function kaygb_copy(){\$(document).ready(function(){\$(\"body\").bind('copy',fun
         if($referer == ""||$referer == null){
             if(!Typecho_Cookie::get('firstView')){
                 Typecho_Cookie::set('firstView', '1', 0, Helper::options()->siteUrl);
-                $hello = "欢迎来到小站里喝茶~  我倍感荣幸啊 嘿嘿 <br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+                $hello = "欢迎来到小站里喝茶~  我倍感荣幸啊 嘿嘿 <br / > ";
             }else{
-                $hello = "欢迎来到小站里喝茶~! 您竟然是直接访问的！莫非您记住了我的<strong>域名</strong>.厉害~ <br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+                $hello = "欢迎来到小站里喝茶~! 您竟然是直接访问的！莫非您记住了我的<strong>域名</strong>.厉害~ <br / > ";
             }
         }elseif(strstr($ben,$host)){ 
             $hello ="host"; 
         }elseif (preg_match('/baiducontent.*/i', $host)){
-            $hello = '您通过 <strong>百度快照</strong> 找到了我，厉害！<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210';
+            $hello = '您通过 <strong>百度快照</strong> 找到了我，厉害！<br / > ';
         }elseif(preg_match('/baidu.*/i', $host)){
-            $hello = '您通过 <strong>百度</strong> 找到了我，厉害！<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210';
+            $hello = '您通过 <strong>百度</strong> 找到了我，厉害！<br / > ';
         }elseif(preg_match('/so.*/i', $host)){
-            $hello = '您通过 <strong>好搜</strong> 找到了我，厉害！<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210';
+            $hello = '您通过 <strong>好搜</strong> 找到了我，厉害！<br / > ';
         }elseif(!preg_match('/www\.google\.com\/reader/i', $referer) && preg_match('/google\./i', $referer)) {
-            $hello = '您居然通过 <strong>Google</strong> 找到了我! 一定是个技术宅吧!<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210';
+            $hello = '您居然通过 <strong>Google</strong> 找到了我! 一定是个技术宅吧!<br / > ';
         }elseif(preg_match('/search\.yahoo.*/i', $referer) || preg_match('/yahoo.cn/i', $referer)){
-            $hello = '您通过 <strong>Yahoo</strong> 找到了我! 厉害！<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210'; 
+            $hello = '您通过 <strong>Yahoo</strong> 找到了我! 厉害！<br / > '; 
         }elseif(preg_match('/cn\.bing\.com\.*/i', $referer) || preg_match('/yahoo.cn/i', $referer)){
-            $hello = '您通过 <strong>Bing</strong> 找到了我! 厉害！<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210';
+            $hello = '您通过 <strong>Bing</strong> 找到了我! 厉害！<br / > ';
         }elseif(preg_match('/google\.com\/reader/i', $referer)){
-            $hello = "感谢你通过 <strong>Google</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+            $hello = "感谢你通过 <strong>Google</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/xianguo\.com\/reader/i', $referer)) {
-            $hello = "感谢你通过 <strong>鲜果</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+            $hello = "感谢你通过 <strong>鲜果</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/zhuaxia\.com/i', $referer)) {
-            $hello = "感谢你通过 <strong>抓虾</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+            $hello = "感谢你通过 <strong>抓虾</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/inezha\.com/i', $referer)) {
-            $hello = "感谢你通过 <strong>哪吒</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+            $hello = "感谢你通过 <strong>哪吒</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/reader\.youdao/i', $referer)) {
-            $hello = "感谢你通过 <strong>有道</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > 欢迎加入【Wibus技术分享群】<br />QQ群号：1103824210";
+            $hello = "感谢你通过 <strong>有道</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         }
         if( $hello != "host"){//排除本地访问
 	        echo "
