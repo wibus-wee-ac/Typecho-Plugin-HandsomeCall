@@ -3,15 +3,17 @@
  * 一款专属于Handsome的信息提示插件
  * @package HandsomeCall
  * @author Wibus
- * @version 2.0
+ * @version 3.0
  * @link https://blog.iucky.cn
  */
+ 
+
 
 class HandsomeCall_Plugin implements Typecho_Plugin_Interface
 {
 	public static function activate()
 	{
-        Typecho_Plugin::factory('Widget_Archive')->footer = array('HandsomeCall_Plugin', 'footer');
+        Typecho_Plugin::factory('Widget_Archive')->footer = array(__CLASS__, 'footer');
         return _t('插件已启用，请访问前台查看效果～');
     }
 
@@ -21,49 +23,137 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
         return _t('插件已禁用，感谢使用～');
 	}
 
-	/* 插件配置方法 */
-    public static function config(Typecho_Widget_Helper_Form $form){
 
+     /**
+     * 获取插件配置面板
+     *
+     * @access public
+     * @param Typecho_Widget_Helper_Form $form 配置面板
+     * @return void
+     */
+    public static function config(Typecho_Widget_Helper_Form $form)
+    {
+    
+    
+    
+    
+        // 插件信息与更新检测
+        function check_update($version)
+        {
+
+            echo "<style>.info{text-align:center; margin:20px 0;} .info > *{margin:0 0 15px} .buttons a{background:#467b96; color:#fff; border-radius:4px; padding: 8px 10px; display:inline-block;}.buttons a+a{margin-left:10px}</style>";
+            echo "<div id='tip'></div>";
+            echo "<div class='info'>";
+            echo "<h2>一款专属于Handsome的信息提示插件 (" . $version . ")</h2>";
+
+            echo "<h3>最新版本：<span style='padding: 2px 4px; background-image: linear-gradient(90deg, rgba(73, 200, 149, 1), rgba(38, 198, 218, 1)); background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; color: rgba(255, 255, 255, 1); border-width: 0.25em 0' id='ver'>获取中...</span>&nbsp;&nbsp;当前版本：<span id='now'>".$version. "</span></h3>";
+            echo "<h3 style='color: rgba(255, 153, 0, 1)' id='description'></h3>";
+            echo "<p>By: <a href='https://blog.iucky.cn'>Wibus</a></p>";
+            echo "<p><span class='buttons'><a href='https://blog.iucky.cn/Y-disk/10.html'>插件说明</a></span>
+            <span id='btn' class='buttons'><a id='description'>获取更新说明</a></span></p>";
+            echo "<script src='https://api.iucky.cn/plugins/update/handsomecall.js'></script>";
+            echo "</div>";
+
+        }
+        check_update("3.0");
+        
+        
+        // 是否启动复制功能
+        $copy = new Typecho_Widget_Helper_Form_Element_Radio(
+            'copy',
+            array(
+                '0' => _t('否'),
+                '1' => _t('是'),
+            ),
+            '1',
+            _t('是否启动复制提示功能'),
+            _t('使用handsome自带的提示弹窗实现复制提醒，如果启动了Pjax，请将下面的选项勾选为 是')
+        );
+        $form->addInput($copy);
+        
+        // 是否启动Pjax
+        $pjax = new Typecho_Widget_Helper_Form_Element_Radio(
+            'pjax',
+            array(
+                '0' => _t('否'),
+                '1' => _t('是'),
+            ),
+            '1',
+            _t('主题是否启动了Pjax'),
+            _t('如果主题启动了Pjax，插件将会自动在Pjax回调函数里添加 kaygb_copy(); 函数')
+        );
+        $form->addInput($pjax);
+        
+        // 作者信息
+        $author = new Typecho_Widget_Helper_Form_Element_Text(
+            'author',
+            NULL,
+            'https://api.btstu.cn/sjbz/?lx=dongman',
+            _t('作者名字：'),
+            _t('复制操作时将会显示信息，没启动复制功能的直接忽略')
+        );
+        $form->addInput($author);
+        
+        
+        
     }
     /**
+     * 个人用户的配置面板
+     *
+     * @access public
+     * @param Typecho_Widget_Helper_Form $form
+     * @return void
+     */
+    public static function personalConfig(Typecho_Widget_Helper_Form $form)
+    {
 
     }
-
-	/* 个人用户的配置方法 */
-	public static function personalConfig(Typecho_Widget_Helper_Form $form){}
 
 	/* 插件实现方法 */
     /**
      * file for header
      * @return void
      */
-    /* public static function header(){} */
+    public static function header(){
+        
+    }
     
     /**
-     * file for footer
-     * @return void
+     * 页脚输出相关代码
+     *
+     * @access public
+     * @param unknown render
+     * @return unknown
      */
     public static function footer()
-	{
+    {
         $referer = $_SERVER["HTTP_REFERER"];
         $refererhost = parse_url($referer);
         $host = strtolower($refererhost['host']);
         $ben=$_SERVER['HTTP_HOST'];
-        
-        echo "<script>
+		$options = Helper::options();
+		$author = $options->plugin('HandsomeCall')->author;
+		$copy = $options->plugin('HandsomeCall')->copy;
+		$pjax = $options->plugin('HandsomeCall')->pjax;
+        //$type = Typecho_Widget::widget('Widget_Options')->plugin('HandsomeCall')->author;
+        if($copy == 1){
+        echo '<script>
             kaygb_copy();
-function kaygb_copy(){\$(document).ready(function(){\$(\"body\").bind('copy',function(e){hellolayer()})});var sitesurl=window.location.href;function hellolayer(){
-    \$.message({
-        message: \"尊重原创，转载请注明出处！<br>原文链接：<br>\"+sitesurl,
-        title: \"复制成功\",
-        type: \"warning\",
+function kaygb_copy(){$(document).ready(function(){$("body").bind(\'copy\',function(e){hellolayer()})});var sitesurl=window.location.href;function hellolayer(){
+    $.message({
+        message: "尊重原创，转载请注明出处！<br> 本文作者：' . $author . '<br>原文链接："+sitesurl,
+        title: "复制成功",
+        type: "warning",
         autoHide: !1,
-        time: \"5000\"
+        time: "5000"
         })
     }}
-    </script>
-            ";
-
+    </script>';
+    if ($pjax == 1){
+    echo '<script>$(document).on("ready pjax:end", function () { kaygb_copy(); })</script>';
+    //echo "<script>console.log('HandsomeCall Pjax-Load SUCCESS ')</script>";
+    }
+}
 
         $hello = "Hello！<strong>".$host."</strong>的朋友！你好哇";
         if($referer == ""||$referer == null){
@@ -116,6 +206,9 @@ function kaygb_copy(){\$(document).ready(function(){\$(\"body\").bind('copy',fun
 </script>
 ";
         }
+
     }
+
 }
+
 ?>
