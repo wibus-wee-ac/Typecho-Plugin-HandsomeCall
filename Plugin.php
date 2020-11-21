@@ -3,7 +3,7 @@
  * 一款专属于Handsome的信息提示插件
  * @package HandsomeCall
  * @author Wibus
- * @version 3.0
+ * @version 4.0.0
  * @link https://blog.iucky.cn
  */
  
@@ -55,7 +55,7 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
             echo "</div>";
 
         }
-        check_update("3.0");
+        check_update("4.0.0");
         
         
         // 是否启动复制功能
@@ -88,15 +88,164 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
         $author = new Typecho_Widget_Helper_Form_Element_Text(
             'author',
             NULL,
-            'https://api.btstu.cn/sjbz/?lx=dongman',
+            'wibus',
             _t('作者名字：'),
             _t('复制操作时将会显示信息，没启动复制功能的直接忽略')
         );
         $form->addInput($author);
         
         
+        $echo1 = new Typecho_Widget_Helper_Form_Element_Text('echo1',NULL,'下面的选项请不要随意修改！！如果修改导致错误重新启动插件即可',_t(''),_t(''));
+        //$form->addInput($echo1);
         
+        // 初次加载
+        $first_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+            'first_load',
+            NULL,
+            '欢迎来到小站里喝茶~  我倍感荣幸啊 嘿嘿 <br / > ',
+            _t('初次进入网站时的提示'),
+            _t('请使用HTML代码进行编写！')
+        );
+        $form->addInput($first_load);
+        
+                
+        // 第二次加载
+        $second_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+            'second_load',
+            NULL,
+            '欢迎来到小站里喝茶~! 您竟然是直接访问的！莫非您记住了我的<strong>域名</strong>.厉害~ <br / >',
+            _t('第二次进入网站时的提示'),
+            _t('请使用HTML代码进行编写！')
+        );
+        $form->addInput($second_load);
+        
+        
+        // 外部链接来源
+        $outside_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+            'outside_load',
+            NULL,
+            '"Hello！<strong>".$host."</strong>的朋友！你好哇";',
+            _t('外部链接进入网站时的提示（".$host" 表示来源链接)'),
+            _t('请使用HTML代码进行编写！不懂请不要修改！')
+        );
+        $form->addInput($outside_load);
+
+            // 来源：百度快照
+            $baidu_photo = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'baidu_pho',
+                NULL,
+                '您通过 <strong>百度快照</strong> 找到了我，厉害！<br / > ',
+                _t('通过百度快照进入网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($baidu_photo);
+        
+            // 来源：百度
+            $baidu_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'baidu_load',
+                NULL,
+                '您通过 <strong>百度</strong> 找到了我，厉害！<br / > ',
+                _t('通过百度进入网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($baidu_load);
+            
+                            
+            //来源：好搜
+            $haosou_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+            'haosou_load',
+             NULL,
+           '您通过 <strong>好搜</strong> 找到了我，厉害！<br / > ',
+            _t('通过好搜进入网站时的提示'),
+            _t('请使用HTML代码进行编写！')
+                            );
+             $form->addInput($haosou_load);
+            
+            // 来源：google
+            $google_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'google_load',
+                NULL,
+                '您居然通过 <strong>Google</strong> 找到了我! 一定是个技术宅吧!<br / > ',
+                _t('通过百Google进入网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($google_load);
+            
+            // 来源：yahoo
+            $yahoo_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'yahoo_load',
+                NULL,
+                '您通过 <strong>Yahoo</strong> 找到了我，厉害！<br / >',
+                _t('通过Yahoo<进入网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($yahoo_load);
+        
+            // 来源：bing
+            $bing_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'bing_load',
+                NULL,
+                '您通过 <strong>Bing</strong> 找到了我，厉害！<br / >',
+                _t('通过Bing进入网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($bing_load);
+            
+            // 来源：google订阅
+            $google_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'google_ding',
+                NULL,
+                '感谢你通过 <strong>Google</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / >',
+                _t('通过Google 订阅 网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($google_ding);
+
+            // 来源：鲜果订阅
+            $xianguo_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'xianguo_ding',
+                NULL,
+                '感谢你通过 <strong>鲜果</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / >',
+                _t('通过鲜果订阅网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($xianguo_ding);
+
+            // 来源：抓虾订阅
+            $zhuaxia_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'zhuaxia',
+                NULL,
+                '感谢你通过 <strong>抓虾/strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / >',
+                _t('通过抓虾订阅网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($zhuaxia);
+
+            // 来源：哪吒订阅
+            $nezha_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'nezha_ding',
+                NULL,
+                '感谢你通过 <strong>哪吒</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / >',
+                _t('通过哪吒订阅网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($nezha_ding);
+
+            // 来源：有道订阅
+            $youdao_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
+                'youdao_ding',
+                NULL,
+                '感谢你通过 <strong>有道</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / >',
+                _t('通过有道订阅网站时的提示'),
+                _t('请使用HTML代码进行编写！')
+            );
+            $form->addInput($youdao_ding);
+                
     }
+    
+    
+    
+
     /**
      * 个人用户的配置面板
      *
@@ -135,6 +284,20 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
 		$author = $options->plugin('HandsomeCall')->author;
 		$copy = $options->plugin('HandsomeCall')->copy;
 		$pjax = $options->plugin('HandsomeCall')->pjax;
+		$first_load = $options->plugin('HandsomeCall')->first_load;
+		$second_load = $options->plugin('HandsomeCall')->second_load;
+        $outside_load = $options->plugin('HandsomeCall')->outside_load;
+        $baidu_photo = $options->plugin('HandsomeCall')->baidu_photo;
+        $baidu_load = $options->plugin('HandsomeCall')->baidu_load;
+        $haosou_load = $options->plugin('HandsomeCall')->haosou_load;
+        $google_load = $options->plugin('HandsomeCall')->google_load;
+        $yahoo_load = $options->plugin('HandsomeCall')->yahoo_load;
+        $bing_load = $options->plugin('HandsomeCall')->bing_load;
+        $google_ding = $options->plugin('HandsomeCall')->google_ding;
+        $xianguo_ding = $options->plugin('HandsomeCall')->xianguo_ding;
+        $zhuaxia_ding = $options->plugin('HandsomeCall')->zhuaxia_ding;
+        $nezha_ding = $options->plugin('HandsomeCall')->nezha_ding;
+        $youdao_ding = $options->plugin('HandsomeCall')->youdao_ding;
         //$type = Typecho_Widget::widget('Widget_Options')->plugin('HandsomeCall')->author;
         if($copy == 1){
         echo '<script>
@@ -151,7 +314,7 @@ function kaygb_copy(){$(document).ready(function(){$("body").bind(\'copy\',funct
     </script>';
     if ($pjax == 1){
     echo '<script>$(document).on("ready pjax:end", function () { kaygb_copy(); })</script>';
-    //echo "<script>console.log('HandsomeCall Pjax-Load SUCCESS ')</script>";
+    echo "<script>console.log('HandsomeCall Pjax-Load SUCCESS ')</script>";
     }
 }
 
@@ -159,34 +322,48 @@ function kaygb_copy(){$(document).ready(function(){$("body").bind(\'copy\',funct
         if($referer == ""||$referer == null){
             if(!Typecho_Cookie::get('firstView')){
                 Typecho_Cookie::set('firstView', '1', 0, Helper::options()->siteUrl);
-                $hello = "欢迎来到小站里喝茶~  我倍感荣幸啊 嘿嘿 <br / > ";
+                //$hello = "欢迎来到小站里喝茶~  我倍感荣幸啊 嘿嘿 <br / > ";
+                $hello = $first_load;
             }else{
-                $hello = "欢迎来到小站里喝茶~! 您竟然是直接访问的！莫非您记住了我的<strong>域名</strong>.厉害~ <br / > ";
+                //$hello = "欢迎来到小站里喝茶~! 您竟然是直接访问的！莫非您记住了我的<strong>域名</strong>.厉害~ <br / > ";
+                $hello = $second_load;
             }
         }elseif(strstr($ben,$host)){ 
             $hello ="host"; 
         }elseif (preg_match('/baiducontent.*/i', $host)){
-            $hello = '您通过 <strong>百度快照</strong> 找到了我，厉害！<br / > ';
+            $hello = $baidu_photo;
+            //$hello = '您通过 <strong>百度快照</strong> 找到了我，厉害！<br / > ';
+            $hello = $second_load;
         }elseif(preg_match('/baidu.*/i', $host)){
-            $hello = '您通过 <strong>百度</strong> 找到了我，厉害！<br / > ';
+            $hello = $baidu_load;
+            //$hello = '您通过 <strong>百度</strong> 找到了我，厉害！<br / > ';
         }elseif(preg_match('/so.*/i', $host)){
-            $hello = '您通过 <strong>好搜</strong> 找到了我，厉害！<br / > ';
+            $hello = $haosou_load;
+            //$hello = '您通过 <strong>好搜</strong> 找到了我，厉害！<br / > ';
         }elseif(!preg_match('/www\.google\.com\/reader/i', $referer) && preg_match('/google\./i', $referer)) {
-            $hello = '您居然通过 <strong>Google</strong> 找到了我! 一定是个技术宅吧!<br / > ';
+            $hello = $google_load;
+            //$hello = '您居然通过 <strong>Google</strong> 找到了我! 一定是个技术宅吧!<br / > ';
         }elseif(preg_match('/search\.yahoo.*/i', $referer) || preg_match('/yahoo.cn/i', $referer)){
-            $hello = '您通过 <strong>Yahoo</strong> 找到了我! 厉害！<br / > '; 
+            $hello = $yahoo_load;
+            //$hello = '您通过 <strong>Yahoo</strong> 找到了我! 厉害！<br / > ';
         }elseif(preg_match('/cn\.bing\.com\.*/i', $referer) || preg_match('/yahoo.cn/i', $referer)){
-            $hello = '您通过 <strong>Bing</strong> 找到了我! 厉害！<br / > ';
+            $hello = $bing_load;
+            //$hello = '您通过 <strong>Bing</strong> 找到了我! 厉害！<br / > ';
         }elseif(preg_match('/google\.com\/reader/i', $referer)){
-            $hello = "感谢你通过 <strong>Google</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
+            $hello = $google_ding;
+            //$hello = "感谢你通过 <strong>Google</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/xianguo\.com\/reader/i', $referer)) {
-            $hello = "感谢你通过 <strong>鲜果</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
+            $hello = $xianguo_ding;
+            //$hello = "感谢你通过 <strong>鲜果</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/zhuaxia\.com/i', $referer)) {
-            $hello = "感谢你通过 <strong>抓虾</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
+            $hello = $zhuaxia_ding;
+            //$hello = "感谢你通过 <strong>抓虾</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/inezha\.com/i', $referer)) {
-            $hello = "感谢你通过 <strong>哪吒</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
+            $hello = $nezha_ding;
+            //$hello = "感谢你通过 <strong>哪吒</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         } elseif (preg_match('/reader\.youdao/i', $referer)) {
-            $hello = "感谢你通过 <strong>有道</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
+            $hello = $youdao_ding;
+            //$hello = "感谢你通过 <strong>有道</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
         }
         if( $hello != "host"){//排除本地访问
 	        echo "
