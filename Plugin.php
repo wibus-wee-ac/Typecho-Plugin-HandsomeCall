@@ -213,13 +213,13 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
 
             // 来源：抓虾订阅
             $zhuaxia_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
-                'zhuaxia',
+                'zhuaxia_ding',
                 NULL,
                 '感谢你通过 <strong>抓虾/strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / >',
                 _t('通过抓虾订阅网站时的提示'),
                 _t('请使用HTML代码进行编写！')
             );
-            $form->addInput($zhuaxia);
+            $form->addInput($zhuaxia_ding);
 
             // 来源：哪吒订阅
             $nezha_ding = new Typecho_Widget_Helper_Form_Element_Textarea(
