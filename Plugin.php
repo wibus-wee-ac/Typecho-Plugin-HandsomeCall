@@ -3,7 +3,7 @@
  * 一款专属于Handsome的信息提示插件
  * @package HandsomeCall
  * @author Wibus
- * @version 4.1.0
+ * @version 4.1.1
  * @link https://blog.iucky.cn
  */
     header("content-type:text/html;charset=utf-8");
@@ -133,15 +133,15 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
         $form->addInput($second_load);
         
         
-        // 外部链接来源
-        $outside_load = new Typecho_Widget_Helper_Form_Element_Textarea(
-            'outside_load',
-            NULL,
-            'Hello！<strong>".$host."</strong>的朋友！你好哇',
-            _t('外部链接进入网站时的提示（".$host" 表示来源链接)'),
-            _t('请使用HTML代码进行编写！不懂请不要修改！')
-        );
-        $form->addInput($outside_load);
+        // // 外部链接来源
+        // $outside_load = new Typecho_Widget_Helper_Form_Element_Textarea(
+        //     'outside_load',
+        //     NULL,
+        //     'Hello！<strong>' .$host. '</strong>的朋友！你好哇',
+        //     _t('外部链接进入网站时的提示（".$host" 表示来源链接)'),
+        //     _t('请使用HTML代码进行编写！不懂请不要修改！')
+        // );
+        // $form->addInput($outside_load);
 
             // 来源：百度快照
             $baidu_photo = new Typecho_Widget_Helper_Form_Element_Textarea(
@@ -303,7 +303,7 @@ class HandsomeCall_Plugin implements Typecho_Plugin_Interface
         
 		$first_load = $options->plugin('HandsomeCall')->first_load;
 		$second_load = $options->plugin('HandsomeCall')->second_load;
-        $outside_load = $options->plugin('HandsomeCall')->outside_load;
+        // $outside_load = $options->plugin('HandsomeCall')->outside_load;
         $baidu_photo = $options->plugin('HandsomeCall')->baidu_photo;
         $baidu_load = $options->plugin('HandsomeCall')->baidu_load;
         $haosou_load = $options->plugin('HandsomeCall')->haosou_load;
@@ -336,7 +336,8 @@ function kaygb_copy(){$(document).ready(function(){$("body").bind(\'copy\',funct
 }
 
 
-        $hello = $outside_load;
+        // $hello = $outside_load;
+        $hello = "Hello！<strong>' .$host. '</strong>的朋友！你好哇";
             if($referer == ""||$referer == null){
                 if(!Typecho_Cookie::get('firstView')){
                     Typecho_Cookie::set('firstView', '1', 0, Helper::options()->siteUrl);
@@ -388,7 +389,7 @@ function kaygb_copy(){$(document).ready(function(){$("body").bind(\'copy\',funct
                 $today = date("m-d"); //获取今日的日期
                 echo "<script>console.log('HandsomeCall date SUCCESS ')</script>";
                 if ($today == "01-01") {
-                    $hello = '<strong>元旦</strong>了呢，新的一年又开始了，今年是{$year}年～';
+                    $hello = '<strong>元旦</strong>了呢，新的一年又开始了，今年是' .$year. '年～';
                 }elseif ($today == "02-14") {
                     $hello = '又是一年<strong>情人节</strong>，{$year}年找到对象了嘛～';
                 }elseif ($today == "03-08") {
