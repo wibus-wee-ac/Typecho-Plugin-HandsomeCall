@@ -385,7 +385,7 @@ function kaygb_copy(){$(document).ready(function(){$("body").bind(\'copy\',funct
                 //$hello = "感谢你通过 <strong>有道</strong> 订阅我!  既然过来读原文了. 欢迎留言指导啊.嘿嘿 ^_^<br / > ";
             }
             if($season == 1){
-                $year = date(Y);
+                $year = date("Y");
                 $today = date("m-d"); //获取今日的日期
                 echo "<script>console.log('HandsomeCall date SUCCESS ')</script>";
                 if ($today == "01-01") {
